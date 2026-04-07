@@ -1,44 +1,42 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import { Page } from './types';
-import Header from './components/Header';
-
-// Temporary "Placeholder" Pages until we build the real ones
-const PlaceholderPage = ({ name }) => (
-  <div className="animate-fade-in">
-    <Header title={name} subtitle={`Welcome to the ${name} section.`} />
-    <div className="bg-gray-800/30 border border-gray-700 p-10 rounded-2xl text-center">
-      <p className="text-gray-400 italic">This feature is currently under construction...</p>
-    </div>
-  </div>
-);
+import AuthPage from './pages/AuthPage';
+import PlaceholderPage from './components/PlaceholderPage';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(Page.Home);
 
+  // If user is not logged in, show the sleek Auth/Login screen
+  if (!isLoggedIn) {
+    return <AuthPage onLoginSuccess={() => setIsLoggedIn(true)} />;
+  }
+
+  // Router logic to switch between pages
   const renderPage = () => {
     switch (currentPage) {
-      case Page.Home:
+      case Page.Home: 
         return <PlaceholderPage name="Home" />;
-      case Page.CreateContent:
+      case Page.CreateContent: 
         return <PlaceholderPage name="Content Creation Studio" />;
-      case Page.CommandCenter:
-        return <PlaceholderPage name="Business Command Center" />;
-      case Page.Onboarding:
-        return <PlaceholderPage name="Brand Onboarding" />;
-      case Page.Help:
-        return <PlaceholderPage name="Help & Support" />;
-      default:
+      case Page.CommandCenter: 
+        return <PlaceholderPage name="Command Center" />;
+      case Page.Onboarding: 
+        return <PlaceholderPage name="Onboarding" />;
+      case Page.Help: 
+        return <PlaceholderPage name="Help" />;
+      default: 
         return <PlaceholderPage name="Home" />;
     }
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex font-sans">
-      {/* Sidebar - Navigation */}
+    <div className="bg-[#0f172a] text-white min-h-screen flex font-sans">
+      {/* Sidebar for Navigation */}
       <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
-      {/* Main Content Area */}
+      {/* Content Area */}
       <main className="flex-1 p-8 md:p-12 overflow-y-auto">
         <div className="max-w-6xl mx-auto">
           {renderPage()}
