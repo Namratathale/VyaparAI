@@ -27,6 +27,7 @@ function App() {
       case Page.Help: 
         return <PlaceholderPage name="Help" />;
       default: 
+        console.warn(`Unexpected currentPage value: ${currentPage}`);
         return <PlaceholderPage name="Home" />;
     }
   };

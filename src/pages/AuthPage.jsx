@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Lock, User, Phone, ArrowRight, Chrome, Github, CheckCircle2 } from 'lucide-react';
-
+import { 
+  Mail, 
+  Lock, 
+  User, 
+  Phone, 
+  ArrowRight, 
+  Github, 
+  CheckCircle2,
+  LogIn 
+} from 'lucide-react';
 const AuthPage = ({ onLoginSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [step, setStep] = useState(1); // 1: Profile, 2: WhatsApp, 3: Success
@@ -78,8 +86,9 @@ const AuthPage = ({ onLoginSuccess }) => {
               </div>
 
               <button className="w-full bg-white text-slate-900 font-bold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all active:scale-95">
-                <Chrome size={20} /> Continue with Google
-              </button>
+  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="Google" />
+  Continue with Google
+</button>
 
               <p className="text-center text-slate-500 mt-6">
                 New user? <button onClick={() => setIsLogin(false)} className="text-emerald-400 font-bold hover:underline">Register profile</button>
