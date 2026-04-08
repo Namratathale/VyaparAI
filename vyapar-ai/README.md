@@ -7,5 +7,5 @@ Welcome! Follow these steps to run the project on your machine.
 Open your terminal and run:
 
 ```bash
-git clone https://github.com/yourusername/your-repo.git
+git clone https://github.com/Namratathale/VyaparAI.git
 cd your-repo
