@@ -6,12 +6,14 @@ import { Page } from './types';
 import AuthPage from './pages/AuthPage';
 import PlaceholderPage from './components/PlaceholderPage';
 import VerifyEmail from './pages/VerifyEmail';
+import Header from './components/Header';
+import Background from './components/Background';
 
 function App() {
   const [user, setUser] = useState(null); // Industry Standard: Store the user object
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(Page.Home);
-
+const [isSidebarOpen, setIsSidebarOpen] = useState(false); //
   // --- Industry Standard: Auth Observer ---
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -44,10 +46,24 @@ function App() {
   };
 
   return (
-    <div className="bg-[#0f172a] text-white min-h-screen flex font-sans">
-      <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <main className="flex-1 p-8 md:p-12 overflow-y-auto">
-        <div className="max-w-6xl mx-auto">{renderPage()}</div>
+ <div className="relative text-white min-h-screen flex font-sans overflow-x-hidden">
+      <Background />
+      
+      <Sidebar 
+        currentPage={currentPage} 
+        setCurrentPage={setCurrentPage} 
+        isOpen={isSidebarOpen} 
+        setIsOpen={setIsSidebarOpen} 
+      />
+
+      <main className="flex-1 p-4 md:p-12 overflow-y-auto z-10">
+        <div className="max-w-6xl mx-auto">
+          <Header 
+  userName={user?.displayName || (user?.email ? user.email.split('@')[0] : 'Merchant')} 
+  onMenuClick={() => setIsSidebarOpen(true)} 
+/>
+          {renderPage()}
+        </div>
       </main>
     </div>
   );

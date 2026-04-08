@@ -1,41 +1,71 @@
-import React from 'react';
-import { Page } from '../types';
-import { Home, Sparkles, LayoutDashboard, UserCircle, HelpCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Menu, Home, PenTool, Layout, Rocket, HelpCircle } from 'lucide-react';
 
-const navItems = [
-  { page: Page.Home, label: 'Home', icon: Home },
-  { page: Page.CreateContent, label: 'Create Content', icon: Sparkles },
-  { page: Page.CommandCenter, label: 'Command Center', icon: LayoutDashboard },
-  { page: Page.Onboarding, label: 'Onboarding', icon: UserCircle },
-  { page: Page.Help, label: 'Help & FAQ', icon: HelpCircle },
-];
+const Sidebar = ({ currentPage, setCurrentPage, isOpen, setIsOpen }) => {
+  // Define your menu items
+  const menuItems = [
+    { id: 'Home', icon: Home, label: 'Home' },
+    { id: 'CreateContent', icon: PenTool, label: 'AI Studio' },
+    { id: 'CommandCenter', icon: Layout, label: 'Command Center' },
+    { id: 'Onboarding', icon: Rocket, label: 'Onboarding' },
+    { id: 'Help', icon: HelpCircle, label: 'Support' },
+  ];
 
-const Sidebar = ({ currentPage, setCurrentPage }) => {
   return (
-    <aside className="bg-gray-900/80 backdrop-blur-sm text-white w-64 p-4 space-y-2 border-r border-gray-700/50 hidden md:block min-h-screen">
-      <div className="text-2xl font-bold p-6 text-center text-purple-400 tracking-tight">
-        Vyapar.ai
-      </div>
-      <nav className="mt-4">
-        <ul>
-          {navItems.map((item) => (
-            <li key={item.page}>
+    <>
+      {/* Mobile Overlay: Dims the background when sidebar is open */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Main Sidebar */}
+      <aside className={`
+        fixed lg:static inset-y-0 left-0 z-50
+        w-72 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+      `}>
+        <div className="p-8">
+          <div className="flex items-center justify-between mb-10">
+            <h1 className="text-2xl font-black text-white tracking-tighter">
+              Vyapar<span className="text-emerald-400">.ai</span>
+            </h1>
+            <button onClick={() => setIsOpen(false)} className="lg:hidden text-slate-400">
+              <X size={24} />
+            </button>
+          </div>
+
+          <nav className="space-y-2">
+            {menuItems.map((item) => (
               <button
-                onClick={() => setCurrentPage(item.page)}
-                className={`w-full flex items-center p-3 my-1 rounded-xl transition-all duration-200 ${
-                  currentPage === item.page
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/20'
-                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                key={item.id}
+                onClick={() => {
+                  setCurrentPage(item.id);
+                  setIsOpen(false); // Auto-close on mobile
+                }}
+                className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl font-bold transition-all ${
+                  currentPage === item.id 
+                  ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20' 
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                 }`}
               >
-                <item.icon className="w-5 h-5 mr-3" />
-                <span className="font-medium">{item.label}</span>
+                <item.icon size={20} />
+                {item.label}
               </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </aside>
+            ))}
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 };
 
