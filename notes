@@ -1,0 +1,40 @@
+// firebase config object
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyA9ej_eGG3zpMUEHRQcN6qJpxpKBK3Rg6A",
+//   authDomain: "vyaparai-ef3cf.firebaseapp.com",
+//   projectId: "vyaparai-ef3cf",
+//   storageBucket: "vyaparai-ef3cf.firebasestorage.app",
+//   messagingSenderId: "924542456046",
+//   appId: "1:924542456046:web:f830359ae4d55a92a123ff",
+//   measurementId: "G-E9TH06B324"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+
+
+
+
+
+2. Security & Compliance
+JWT & HttpOnly Cookies: For the most secure login, store user sessions in protected cookies rather than localStorage.
+
+Rate Limiting: Prevent users from clicking "Resend OTP" 100 times to avoid huge API bills.
+
+3. Feature Improvements (The "Vyapar" Edge)
+WhatsApp Catalog Integration: Instead of just tracking sales, allow the AI to read the user's WhatsApp Business Catalog to suggest which product to promote based on stock levels.
+
+Vernacular AI (India Stack): Since you are targeting Indian MSMEs, add Voice-to-Text in Hindi/Marathi/Tamil using OpenAI Whisper API. A merchant should be able to say, "Aaj 10 saree bechi, total 5000 mila" and the AI logs it automatically.
+
+
+// WHATSAPP_TOKEN=EAAQwMgKkJ8ABRFFXkDLoSkCn0YQ1mT6C25WP6nVaegAab5n33mxlt5OvfjOixOtuZCvM1aq5RBLrEBQiIsiF5BVgJXRBqki3PYLA3JuO52oIbUjueZCiZATRT61YlhApBT1m0MSI9gJE0SUZBxbZC43cwP9fNkooYZCi7Xrlx2Ki8ZCsQtaf6BII1GD59X0aZBv8Sl8gHiupqPIO3FzRg2so5FimG73phD0erLWga8FdQuisPp8I8gPYvGbHLPzeQiR2bNXbmFJSR6jfOZAJ5NqxOhZB6ZCTImrKqBZC4QZDZD
+// PHONE_NUMBER_ID=983026011564235
