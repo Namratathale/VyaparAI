@@ -6,8 +6,7 @@ const Sidebar = ({ currentPage, setCurrentPage, isOpen, setIsOpen }) => {
   // Define your menu items
   const menuItems = [
     { id: 'Home', icon: Home, label: 'Home' },
-    { id: 'CreateContent', icon: PenTool, label: 'AI Studio' },
-    { id: 'CommandCenter', icon: Layout, label: 'Command Center' },
+{ id: 'CreateContent', icon: PenTool, label: 'AI Studio' },    { id: 'CommandCenter', icon: Layout, label: 'Command Center' },
     { id: 'Onboarding', icon: Rocket, label: 'Onboarding' },
     { id: 'Help', icon: HelpCircle, label: 'Support' },
   ];
